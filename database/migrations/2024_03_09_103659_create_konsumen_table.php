@@ -11,16 +11,16 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('konsumen', function (Blueprint $table) {
-            $table->integer('id_konsumen');
+            $table->integer('id_konsumen')->autoIncrement();
             $table->string('token_konsumen', 255);
             $table->string('nama_konsumen');
             $table->string('alamat_konsumen');
             $table->string('nomer_telepon');
-            $table->enum('status_pembelian', [0, 1]);
-            $table->enum('status_pembayaran', [0, 1]);
-            $table->integer('id_produk');
+            $table->enum('status_pembelian', ['belum_dikirim', 'dikirim']);
             $table->date('tanggal_pembelian');
-            $table->date('tenggal-pengirim');
+            $table->date('tanggal_pengirim');
+            $table->text('deskripsi');
+            $table->integer('id_produk');
             $table->timestamps();
         });
     }

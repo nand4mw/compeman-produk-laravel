@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KonsumenController;
+use App\Http\Controllers\ProdukController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/dashboard', [DashboardController::class, 'index']);
+Route::get('/produk', [ProdukController::class, 'index']);
+Route::post('/produk', [ProdukController::class, 'tambah_action']);
+Route::get('/konsumen', [KonsumenController::class, 'index']);
+Route::get('/konsumen/tambah', [KonsumenController::class, 'tambah']);
+Route::post('/konsumen/tambah', [KonsumenController::class, 'tambah_action']);
+
+Route::get('/konsumen/{id}/apikey', [KonsumenController::class, 'updateStatus']);
